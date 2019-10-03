@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'ImageBoard_Example' do
+  pod 'ImageBoard', :path => '../'
+
+  target 'ImageBoard_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
