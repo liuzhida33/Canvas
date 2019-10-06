@@ -1,0 +1,16 @@
+PODS:
+  - ImageBoard (1.0.0)
+
+DEPENDENCIES:
+  - ImageBoard (from `../`)
+
+EXTERNAL SOURCES:
+  ImageBoard:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ImageBoard: 1f0efe0c9cb7f40449c56269b7e32ad82c86b647
+
+PODFILE CHECKSUM: 5efda1b85e0ddd11a10bdb69d5f41bf3542d3941
+
+COCOAPODS: 1.7.5

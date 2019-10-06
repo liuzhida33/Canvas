@@ -9,7 +9,19 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+<p align="left">
+  <img src="./Preview/ImageBoard-1.png" />
+</p>
+<p align="left">
+  <img src="./Preview/ImageBoard-2.png" />
+</p>
+<p align="left">
+  <img src="./Preview/ImageBoard.gif" />
+</p>
+
 ## Requirements
+
+iOS 10.0+
 
 ## Installation
 
@@ -19,6 +31,18 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'ImageBoard'
 ```
+
+## Usage
+
+### Basics
+
+``` swift
+let editVC = ImageBoardViewController()
+editVC.editImage = image
+editVC.modalPresentationStyle = .custom
+present(editVC, animated: true)
+```
+
 
 ## Author
 
