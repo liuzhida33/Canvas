@@ -2,10 +2,10 @@
 Pod::Spec.new do |s|
   s.name             = 'ImageBoard'
   s.version          = '1.0.0'
-  s.summary          = 'A short description of ImageBoard.'
+  s.summary          = '图片涂鸦板'
 
   s.description      = <<-DESC
-this is ImageBoard
+图片涂鸦板、Swift项目、支持iOS10+
                        DESC
 
   s.homepage         = 'https://github.com/liuzhida33/ImageBoard'
