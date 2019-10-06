@@ -9,13 +9,13 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-<p align="left">
-  <img src="./Preview/ImageBoard-1.png" />
+<p align="center">
+  <img src="./Preview/ImageBoard.png" width="90%" />
 </p>
-<p align="left">
-  <img src="./Preview/ImageBoard-2.png" />
-</p>
-<p align="left">
+
+## Preview
+
+<p align="center">
   <img src="./Preview/ImageBoard.gif" />
 </p>
 
