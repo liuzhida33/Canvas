@@ -51,6 +51,8 @@ final class BoardToolBar: UIView {
     
     private lazy var toolBar: UIToolbar = {
         let bar = UIToolbar()
+        bar.setBackgroundImage(UIImage(color: .clear), forToolbarPosition: .any, barMetrics: .default)
+        bar.setShadowImage(UIImage(color: .clear), forToolbarPosition: .any)
         return bar
     }()
     
@@ -211,7 +213,7 @@ fileprivate final class BrushColorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         
         var bundle = Bundle(for: BrushColorViewController.classForCoder())
         if let resourcePath = bundle.path(forResource: "ImageBoard", ofType: "bundle") {

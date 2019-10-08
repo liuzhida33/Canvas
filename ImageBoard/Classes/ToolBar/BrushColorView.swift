@@ -21,7 +21,7 @@ final class BrushColorView: UIView {
     
     required init(colors: [UIColor]) {
         super.init(frame: .zero)
-        self.backgroundColor = .white
+        self.backgroundColor = .clear
         self.colors = colors
         self.translatesAutoresizingMaskIntoConstraints = false
         

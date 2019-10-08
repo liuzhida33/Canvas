@@ -28,6 +28,7 @@ public final class ImageBoardViewController: UIViewController {
     private lazy var topBar: UIToolbar = {
         let bar = UIToolbar()
         bar.setBackgroundImage(UIImage(color: .clear), forToolbarPosition: .any, barMetrics: .default)
+        bar.setShadowImage(UIImage(color: .clear), forToolbarPosition: .any)
         bar.delegate = self
         return bar
     }()
