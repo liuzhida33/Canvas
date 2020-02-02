@@ -72,7 +72,10 @@ final class BoardToolBar: UIView {
         return button
     }()
     
-    private lazy var colors: [UIColor] = [.black, .blue, .cyan, .green, .red, .orange, .yellow, .purple, .brown, .gray, .lightGray]
+    private lazy var colors: [UIColor] = [.red,
+                                          UIColor(red: 200.0 / 255.0, green: 220.0 / 255.0, blue: 110.0 / 255.0, alpha: 1),
+                                          UIColor(red: 0, green: 180.0 / 255.0, blue: 200.0 / 255.0, alpha: 1),
+                                          UIColor(red: 240.0 / 255.0, green: 130.0 / 255.0, blue: 150.0 / 255.0, alpha: 1)]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
