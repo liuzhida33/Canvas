@@ -9,6 +9,11 @@ import UIKit
 
 public final class ImageBoardViewController: UIViewController {
     
+    public typealias ImageBoardAction = (UIImage) -> UIAlertAction
+    
+    /// 点击`完成`时附加操作
+    public var completeActions: [ImageBoardAction] = []
+    
     /// 编辑的图片
     public var editImage: UIImage? {
         didSet {
@@ -167,22 +172,32 @@ public final class ImageBoardViewController: UIViewController {
         drawBoardImageView.reableDraw = { [weak self] in
             self?.redoButtonItem.isEnabled = false
         }
+        
+        drawBoardImageView.strokeColor = boardToolBar.strokeColor
+        drawBoardImageView.strokeWidth = boardToolBar.strokeWidth
+        drawBoardImageView.mode = boardToolBar.mode
+        switch boardToolBar.mode {
+        case .none:
+            scrollView.isScrollEnabled = true
+        case .pencil:
+            scrollView.isScrollEnabled = false
+        }
     }
     
     @objc private func onSaveAction(_ sender: Any) {
+        let image = drawBoardImageView.takeImage()
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let saveAction = UIAlertAction(title: "存储到“照片”", style: .default, handler: { [weak self] _ in
             guard let self = self else { return }
-            UIImageWriteToSavedPhotosAlbum(self.drawBoardImageView.takeImage(), nil, nil, nil)
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
             self.dismiss(animated: true)
         })
         let deleteAction = UIAlertAction(title: "删除图片", style: .destructive, handler: { [weak self] _ in
             self?.dismiss(animated: true)
         })
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-        alertController.addAction(saveAction)
-        alertController.addAction(deleteAction)
-        alertController.addAction(cancelAction)
+        completeActions.map { $0(image) }.forEach(alertController.addAction)
+        [saveAction, deleteAction, cancelAction].forEach(alertController.addAction)
         present(alertController, animated: true)
     }
     

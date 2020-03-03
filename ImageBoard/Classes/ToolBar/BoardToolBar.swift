@@ -28,7 +28,7 @@ final class BoardToolBar: UIView {
     weak var delegate: BoardToolBarDelegate?
     
     /// 线条颜色
-    private var strokeColor: UIColor = .black {
+    private(set) var strokeColor: UIColor = .red {
         didSet {
             colorButton.setImage(UIImage(color: strokeColor), for: .normal)
             delegate?.didSelect(strokeColor: strokeColor)
@@ -36,15 +36,16 @@ final class BoardToolBar: UIView {
     }
     
     /// 线条宽度
-    private var strokeWidth: Float = 3.0 {
+    private(set) var strokeWidth: Float = 3.0 {
         didSet {
             delegate?.didChange(strokeWidth: strokeWidth)
         }
     }
     
     /// 当前绘图模式，默认什么都不做
-    private var mode: SketchMode = .none {
+    private(set) var mode: SketchMode = .none {
         didSet {
+            strokeButton.tintColor = mode == .pencil ? .systemBlue : .lightGray
             delegate?.didSelect(mode: mode)
         }
     }
@@ -67,7 +68,6 @@ final class BoardToolBar: UIView {
     /// 画笔
     private lazy var strokeButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.tintColor = .lightGray
         button.addTarget(self, action: #selector(onStrokeClick(_:)), for: .touchUpInside)
         return button
     }()
@@ -104,7 +104,8 @@ final class BoardToolBar: UIView {
         }
         
         strokeButton.setImage(UIImage(named: "pencil", in: bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate), for: .normal)
-        colorButton.setImage(UIImage(color: colors.first ?? UIColor.red), for: .normal)
+        strokeColor = colors.first ?? .red
+        mode = .pencil
         
         toolBar.items = [createFlexibleSpaceItem(),
                          UIBarButtonItem(customView: colorButton),
@@ -124,9 +125,10 @@ final class BoardToolBar: UIView {
     }
     
     @objc private func onStrokeClick(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        sender.tintColor = sender.isSelected ? .systemBlue : .lightGray
-        mode = sender.isSelected ? .pencil : .none
+        switch mode {
+        case .none: mode = .pencil
+        case .pencil: mode = .none
+        }
     }
     
     @objc private func onColorClick(_ sender: UIButton) {

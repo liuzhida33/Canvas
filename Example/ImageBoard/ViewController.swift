@@ -38,7 +38,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func onEditAction(_ sender: Any) {
         guard let image = imageView.image else { return }
         let editVC = ImageBoardViewController()
+        let publishAction: ImageBoardViewController.ImageBoardAction = { image in
+            return UIAlertAction(title: "发起报事", style: .default) { _ in
+                print(image)
+                editVC.dismiss(animated: true)
+            }
+        }
         editVC.editImage = image
+        editVC.completeActions = [publishAction]
         editVC.modalPresentationStyle = .custom
         present(editVC, animated: true)
     }
