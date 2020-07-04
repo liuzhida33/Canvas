@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="btS-K9-zWb">
+                                <rect key="frame" x="0.0" y="246" width="414" height="414"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7ld-2K-kUs">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="7ld-2K-kUs" firstAttribute="height" secondItem="B3R-6Q-K8J" secondAttribute="height" id="1fg-zG-YvX"/>
+                                    <constraint firstItem="7ld-2K-kUs" firstAttribute="trailing" secondItem="4p6-KG-vqE" secondAttribute="trailing" id="EgW-gf-X4D"/>
+                                    <constraint firstItem="7ld-2K-kUs" firstAttribute="bottom" secondItem="4p6-KG-vqE" secondAttribute="bottom" id="Veu-8p-9UT"/>
+                                    <constraint firstAttribute="width" secondItem="btS-K9-zWb" secondAttribute="height" multiplier="1:1" id="W20-iZ-Tx7"/>
+                                    <constraint firstItem="7ld-2K-kUs" firstAttribute="top" secondItem="4p6-KG-vqE" secondAttribute="top" id="jxQ-ch-OSC"/>
+                                    <constraint firstItem="7ld-2K-kUs" firstAttribute="leading" secondItem="4p6-KG-vqE" secondAttribute="leading" id="vtQ-OS-iu1"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="4p6-KG-vqE"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="B3R-6Q-K8J"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="2bR-j5-OIY"/>
+                                </connections>
+                            </scrollView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caR-TC-qfT">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem title="Pick Image" id="elg-vw-cLd">
+                                        <connections>
+                                            <action selector="onPickAction:" destination="BYZ-38-t0r" id="vHn-pJ-d1a"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nEa-pE-sAO"/>
+                                    <barButtonItem title="Edit Image" id="ZtZ-YW-k50">
+                                        <connections>
+                                            <action selector="onEditAction:" destination="BYZ-38-t0r" id="IoR-jI-XVn"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="btS-K9-zWb" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="CI0-VC-oMk"/>
+                            <constraint firstAttribute="trailing" secondItem="caR-TC-qfT" secondAttribute="trailing" id="MxZ-cx-AdN"/>
+                            <constraint firstItem="btS-K9-zWb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bdF-uU-pvM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="caR-TC-qfT" secondAttribute="bottom" id="gfX-YA-Q3H"/>
+                            <constraint firstItem="7ld-2K-kUs" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="lo6-M2-EuO"/>
+                            <constraint firstItem="caR-TC-qfT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="o4d-dY-ZCw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="btS-K9-zWb" secondAttribute="trailing" id="pLi-N7-LcN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="7ld-2K-kUs" id="6Wc-aK-GAU"/>
+                        <outlet property="scrollView" destination="btS-K9-zWb" id="Irg-Tl-4h9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,12 @@
+{
+    "brush": {
+        "degree": {
+            "minimumValue": 1.0,
+            "maximumValue": 10.0,
+            "defaultValue": 3.0
+        },
+        "colors": ["#FF4444", "#C7DC6D", "#EF8295", "#00B4C7", "#000000"]
+    },
+    "tintColor": "#009ad6",
+    "enableBrush": true
+}

@@ -1,0 +1,13 @@
+# OS X
+.DS_Store
+
+# Xcode
+build/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.swp
+Podfile.lock
+
+.bundle
+Carthage/Build
+Pods/
