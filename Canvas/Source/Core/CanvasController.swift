@@ -57,7 +57,10 @@ public final class CanvasController: UIViewController {
         super.viewDidLoad()
         
         install()
+        
+        view.setNeedsLayout()
         view.layoutIfNeeded()
+        canvasView.image = sourceImage
     }
     
     public override var shouldAutorotate: Bool {
@@ -68,16 +71,19 @@ public final class CanvasController: UIViewController {
         return true
     }
     
-    deinit {
-        print("\(type(of: self)) deinit")
-    }
-    
-    public override func viewSafeAreaInsetsDidChange() {
-        super.viewSafeAreaInsetsDidChange()
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        maskingView.frame = view.bounds
+        containerView.frame = CGRect(x: view.safeAreaInsets.left,
+                                     y: view.safeAreaInsets.top,
+                                     width: view.bounds.width - view.safeAreaInsets.left - view.safeAreaInsets.right,
+                                     height: view.bounds.height - view.safeAreaInsets.top - view.safeAreaInsets.bottom)
         
         let size: CGSize
         let imageSize = sourceImage.size
-        let containerSize = scrollView.bounds.size
+        let containerSize = CGSize(width: containerView.bounds.width, height: containerView.bounds.height - menuToolBar.bounds.height - toolBar.bounds.height)
+        scrollView.frame = CGRect(origin: CGPoint(x: 0, y: menuToolBar.frame.maxY), size: containerSize)
         if containerSize.width > containerSize.height {
             size = CGSize(width: floor(containerSize.height * imageSize.width / imageSize.height), height: floor(containerSize.height) )
         } else {
@@ -86,7 +92,6 @@ public final class CanvasController: UIViewController {
         canvasView.frame = CGRect(origin: .zero, size: size)
         scrollView.contentSize = size
         centerIfNeeded()
-        canvasView.image = sourceImage
     }
 }
 
@@ -106,36 +111,19 @@ private extension CanvasController {
                 blurView.effect = UIBlurEffect(style: style)
                 maskingView.backgroundView = blurView
             }
-            
-            maskingView.translatesAutoresizingMaskIntoConstraints = false
-            
+                        
             view.addSubview(maskingView)
-            
-            NSLayoutConstraint.activate([
-                maskingView.leftAnchor.constraint(equalTo: view.leftAnchor),
-                maskingView.rightAnchor.constraint(equalTo: view.rightAnchor),
-                maskingView.topAnchor.constraint(equalTo: view.topAnchor),
-                maskingView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
         }
         
         func installContainerView() {
             
             containerView.axis = .vertical
-            containerView.translatesAutoresizingMaskIntoConstraints = false
             
             maskingView.addSubview(containerView)
-            
-            NSLayoutConstraint.activate([
-                containerView.leftAnchor.constraint(equalTo: maskingView.safeAreaLayoutGuide.leftAnchor),
-                containerView.rightAnchor.constraint(equalTo: maskingView.safeAreaLayoutGuide.rightAnchor),
-                containerView.topAnchor.constraint(equalTo: maskingView.safeAreaLayoutGuide.topAnchor),
-                containerView.bottomAnchor.constraint(equalTo: maskingView.safeAreaLayoutGuide.bottomAnchor)
-            ])
         }
         
         func installMenuToolBar() {
-            
+                        
             menuToolBar.setBackgroundImage(UIImage(color: .clear), forToolbarPosition: .any, barMetrics: .default)
             menuToolBar.setShadowImage(UIImage(color: .clear), forToolbarPosition: .any)
             menuToolBar.items = [exitButtonItem, UIBarButtonItem.flexibleSpace(), menuButtonItem]
@@ -235,8 +223,8 @@ private extension CanvasController {
     
     func centerIfNeeded() {
         var inset: UIEdgeInsets = .zero
-        let height = scrollView.bounds.height - view.safeAreaInsets.top - view.safeAreaInsets.bottom
-        let width = scrollView.bounds.width - view.safeAreaInsets.left - view.safeAreaInsets.right
+        let height = scrollView.bounds.height
+        let width = scrollView.bounds.width
         if scrollView.contentSize.height < height {
             let insetV = (height - scrollView.contentSize.height) / 2
             inset.top += insetV

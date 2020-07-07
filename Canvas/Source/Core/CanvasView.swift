@@ -76,7 +76,7 @@ private extension CanvasView {
         originalImage = image
         history.removeAll()
         
-        super.image = resize(image)
+        super.image = image?.scaled(toSize: bounds.size)
     }
 }
 
@@ -126,27 +126,6 @@ extension CanvasView {
 // MARK: - Draw
 private extension CanvasView {
     
-    /// 重绘图片，不直接使用原图预览原因是后续绘图会大大增加内存消耗
-    /// 所以需要对原图进行缩放，只展示缩略图进行绘图，生成图片时再根据缩放比例还原原图
-    ///
-    /// - Parameter original: 原始图片
-    /// - Returns: 返回一个当前视图大小尺寸的缩放图片
-    func resize(_ original: UIImage?) -> UIImage? {
-        guard let original = original else { return nil }
-        
-        defer { UIGraphicsEndImageContext() }
-        
-        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
-        UIGraphicsGetCurrentContext()
-        original.draw(in: bounds)
-        
-        guard let cgImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage else {
-            return nil
-        }
-        
-        return UIImage(cgImage: cgImage)
-    }
-    
     /// 合成图片
     /// 涂鸦操作过程中图片是以当前画板的`bounds`大小绘制上下文，目的是降低绘制中内存增耗
     /// 绘制完毕后，结合`history`存储的路径和缩放比例进行原图还原
@@ -194,5 +173,17 @@ extension UIImage {
         }
         
         return UIImage(cgImage: cgImage)
+    }
+    
+    /// 缩放图片
+    /// - Parameter toSize: 指定缩放后的大小
+    /// - Returns: 返回缩放后的图片
+    func scaled(toSize: CGSize) -> UIImage? {
+        
+        defer { UIGraphicsEndImageContext() }
+        
+        UIGraphicsBeginImageContextWithOptions(toSize, false, UIScreen.main.scale)
+        draw(in: CGRect(x: 0, y: 0, width: toSize.width, height: toSize.height))
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
 }
