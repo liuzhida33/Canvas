@@ -10,7 +10,7 @@ This is a canvas framework
   s.homepage         = 'https://github.com/liuzhida33/Canvas'
   s.license          = { :type => 'MIT' }
   s.author           = { 'liuzhida33' => 'liuzhida33@gmail.com' }
-  s.source           = { :git => 'https://github.com/liuzhida33/Canvas.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://codeup.aliyun.com/5f04232203c101edda5680dc/zlj-ios/Canvas.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '11.0'
   s.swift_version    = '5.0'
