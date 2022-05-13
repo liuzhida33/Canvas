@@ -74,6 +74,7 @@ final class ToolBar: UIView {
         let button = UIButton(type: .custom)
         button.layer.cornerRadius = 15
         button.layer.masksToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didColorClick(_:)), for: .touchUpInside)
         return button
     }()
@@ -81,6 +82,7 @@ final class ToolBar: UIView {
     /// 画笔
     private lazy var brushButton: UIButton = {
         let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didBrushClick(_:)), for: .touchUpInside)
         return button
     }()
@@ -90,6 +92,7 @@ final class ToolBar: UIView {
         let button = UIButton(type: .custom)
         button.isEnabled = false
         button.tintColor = .lightGray
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "undo", in: Bundle.framework, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.addTarget(self, action: #selector(didUndoAction(_:)), for: .touchUpInside)
         return button
@@ -100,6 +103,7 @@ final class ToolBar: UIView {
         let button = UIButton(type: .custom)
         button.isEnabled = false
         button.tintColor = .lightGray
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "redo", in: Bundle.framework, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.addTarget(self, action: #selector(didRedoAction(_:)), for: .touchUpInside)
         return button
@@ -117,7 +121,9 @@ private extension ToolBar {
         
         let hStackView = UIStackView(arrangedSubviews: [colorButton, brushButton, redoButton, undoButton])
         hStackView.spacing = 30
+        hStackView.alignment = .center
         hStackView.translatesAutoresizingMaskIntoConstraints = false
+        
         addSubview(hStackView)
         
         brushButton.setImage(UIImage(named: "pencil", in: Bundle.framework, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -127,13 +133,10 @@ private extension ToolBar {
             redoButton.widthAnchor.constraint(equalToConstant: 30),
             undoButton.widthAnchor.constraint(equalToConstant: 30),
             brushButton.widthAnchor.constraint(equalToConstant: 30),
-            colorButton.widthAnchor.constraint(equalToConstant: 30)
-        ])
-        NSLayoutConstraint.activate([
-            hStackView.heightAnchor.constraint(equalToConstant: 30),
-            hStackView.leftAnchor.constraint(equalTo: leftAnchor),
-            hStackView.rightAnchor.constraint(equalTo: rightAnchor),
-            hStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            colorButton.widthAnchor.constraint(equalToConstant: 30),
+            colorButton.heightAnchor.constraint(equalToConstant: 30),
+            hStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            hStackView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     

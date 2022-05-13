@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Canvas'
-  s.version          = '1.1.1'
+  s.version          = '1.2.0'
   s.summary          = 'This is a canvas framework'
 
   s.description      = <<-DESC

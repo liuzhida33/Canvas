@@ -38,6 +38,18 @@ class ViewController: UIViewController {
         canvas.modalPresentationStyle = .custom
         present(canvas, animated: true)
     }
+    
+    @IBAction func onSignAction(_ sender: Any) {
+        let canvas = SignatureController(config: .init(fileURL: Bundle.main.url(forResource: "CanvasConfig", withExtension: "json")!))
+        canvas.modalPresentationStyle = .fullScreen
+        canvas.exportOpaque = true
+        canvas.watermark = .word(WaterMark.Word(title: "测试  10010", color: UIColor(white: 0, alpha: 0.15)), WaterMark.Layout())
+        canvas.signatureResult = { [weak self] image in
+            print(image)
+            self?.imageView.image = image
+        }
+        present(canvas, animated: true)
+    }
 }
 
 extension ViewController: UIScrollViewDelegate {

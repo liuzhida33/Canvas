@@ -40,6 +40,8 @@
 		767D469B2434660800B06F8C /* CanvasConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 767D469A2434660800B06F8C /* CanvasConfig.json */; };
 		767D469E24347FDA00B06F8C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D469D24347FDA00B06F8C /* Color.swift */; };
 		767D46A024347FF900B06F8C /* StringBacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D469F24347FF900B06F8C /* StringBacked.swift */; };
+		76B902A8282CA0BF003D9FCE /* SignatureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B902A7282CA0BF003D9FCE /* SignatureController.swift */; };
+		76B902AA282CEAED003D9FCE /* WaterMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B902A9282CEAED003D9FCE /* WaterMark.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,8 @@
 		767D469A2434660800B06F8C /* CanvasConfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CanvasConfig.json; sourceTree = "<group>"; };
 		767D469D24347FDA00B06F8C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		767D469F24347FF900B06F8C /* StringBacked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringBacked.swift; sourceTree = "<group>"; };
+		76B902A7282CA0BF003D9FCE /* SignatureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureController.swift; sourceTree = "<group>"; };
+		76B902A9282CEAED003D9FCE /* WaterMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterMark.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,7 +201,9 @@
 			children = (
 				767D4647242ECF8600B06F8C /* CanvasView.swift */,
 				767D465424317EEB00B06F8C /* CanvasController.swift */,
+				76B902A7282CA0BF003D9FCE /* SignatureController.swift */,
 				767D4659243190BD00B06F8C /* MaskingView.swift */,
+				76B902A9282CEAED003D9FCE /* WaterMark.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -388,9 +394,11 @@
 				767D46A024347FF900B06F8C /* StringBacked.swift in Sources */,
 				767D465824318E2D00B06F8C /* Bundle++.swift in Sources */,
 				767D465524317EEB00B06F8C /* CanvasController.swift in Sources */,
+				76B902AA282CEAED003D9FCE /* WaterMark.swift in Sources */,
 				767D4645242ECEC300B06F8C /* BrushType.swift in Sources */,
 				767D468A24332CC200B06F8C /* ColorView.swift in Sources */,
 				767D465A243190BD00B06F8C /* MaskingView.swift in Sources */,
+				76B902A8282CA0BF003D9FCE /* SignatureController.swift in Sources */,
 				767D4648242ECF8600B06F8C /* CanvasView.swift in Sources */,
 				767D465C2431959600B06F8C /* UIImage++.swift in Sources */,
 				767D4653242EDC6100B06F8C /* PencilBrush.swift in Sources */,

@@ -6,4 +6,9 @@
   Copyright © 2020 joylife. All rights reserved.
 */
 
-"Save to Album" = "保存到相册";
+"Canvas.SaveToAlbum" = "保存到相册";
+"Canvas.Cancel" = "取消";
+"Canvas.Error" = "错误";
+"Canvas.OK" = "确定";
+"Canvas.Rewrite" = "重写";
+"Canvas.Confirm" = "确定";

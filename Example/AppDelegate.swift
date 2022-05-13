@@ -12,6 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var orientationLock = UIInterfaceOrientationMask.allButUpsideDown
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -35,3 +36,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension AppDelegate {
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return orientationLock
+    }
+}
+
+func lockOrientation(_ orientation: UIInterfaceOrientationMask, rotaeTo rotateOrientation: UIInterfaceOrientation? = nil) {
+    
+    if let delegate = UIApplication.shared.delegate as? AppDelegate {
+        delegate.orientationLock = orientation
+    }
+    
+    if let rotateOrientation = rotateOrientation {
+        UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
+    }
+}

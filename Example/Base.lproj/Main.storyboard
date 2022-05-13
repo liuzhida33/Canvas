@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,6 +21,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7ld-2K-kUs">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -45,16 +46,22 @@
                                             <action selector="onPickAction:" destination="BYZ-38-t0r" id="vHn-pJ-d1a"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nEa-pE-sAO"/>
                                     <barButtonItem title="Edit Image" id="ZtZ-YW-k50">
                                         <connections>
                                             <action selector="onEditAction:" destination="BYZ-38-t0r" id="IoR-jI-XVn"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nEa-pE-sAO"/>
+                                    <barButtonItem title="Sign" id="4rQ-SI-2a9">
+                                        <connections>
+                                            <action selector="onSignAction:" destination="BYZ-38-t0r" id="hha-sE-HIS"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="btS-K9-zWb" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="CI0-VC-oMk"/>
                             <constraint firstAttribute="trailing" secondItem="caR-TC-qfT" secondAttribute="trailing" id="MxZ-cx-AdN"/>
@@ -64,7 +71,6 @@
                             <constraint firstItem="caR-TC-qfT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="o4d-dY-ZCw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="btS-K9-zWb" secondAttribute="trailing" id="pLi-N7-LcN"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="7ld-2K-kUs" id="6Wc-aK-GAU"/>

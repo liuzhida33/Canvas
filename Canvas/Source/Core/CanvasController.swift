@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// 涂鸦板
 public final class CanvasController: UIViewController {
     
     public typealias AlertAction = (UIImage) -> UIAlertAction
@@ -38,7 +39,7 @@ public final class CanvasController: UIViewController {
     // 画板
     private lazy var canvasView: CanvasView = CanvasView()
     // 画板顶部菜单栏
-    private lazy var menuToolBar: UIToolbar = UIToolbar()
+    private lazy var menuToolBar: UIToolbar = UIToolbar(frame: CGRect(origin: .zero, size: CGSize(width: view.bounds.width, height: 44)))
     // 画板底部工具栏
     private lazy var toolBar: ToolBar = ToolBar(config: config)
     // 背景视图
@@ -183,14 +184,10 @@ private extension CanvasController {
             canvasView.brush = toolBar.sketchMode.brush
             scrollView.isScrollEnabled = !toolBar.sketchMode.isEditing
             
-            let vStackView = UIStackView(arrangedSubviews: [toolBar])
-            vStackView.alignment = .center
-            vStackView.axis = .vertical
-            
-            containerView.addArrangedSubview(vStackView)
+            containerView.addArrangedSubview(toolBar)
             
             NSLayoutConstraint.activate([
-                vStackView.heightAnchor.constraint(equalToConstant: 50)
+                toolBar.heightAnchor.constraint(equalToConstant: 50)
             ])
         }
         
@@ -247,13 +244,16 @@ private extension CanvasController {
         indicatorView.startAnimating()
         
         DispatchQueue.main.async {
-            guard let image = self.canvasView.image else { return }
+            guard let image = self.canvasView.image else {
+                self.showAlert(NSLocalizedString("Canvas.FailedToExportImage", value: "Failed to export image.", comment: ""))
+                return
+            }
             let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            let saveAction = UIAlertAction(title: NSLocalizedString("Save to Album", comment: "Save to Album"), style: .default, handler: { [weak self] _ in
+            let saveAction = UIAlertAction(title: NSLocalizedString("Canvas.SaveToAlbum", value: "Save to Album", comment: ""), style: .default, handler: { [weak self] _ in
                 UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                 self?.dismiss(animated: true)
             })
-            let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Canvas.Cancel", value: "Cancel", comment: ""), style: .cancel, handler: nil)
             self.menuAlertActions.map { $0(image) }.forEach(alertController.addAction)
             [saveAction, cancelAction].forEach(alertController.addAction)
             self.present(alertController, animated: true)
@@ -263,6 +263,13 @@ private extension CanvasController {
     
     @objc func didExitAction(_ sender: Any) {
         dismiss(animated: true)
+    }
+    
+    private func showAlert(_ message: String) {
+        let alertController = UIAlertController(title: NSLocalizedString("Canvas.Error", comment: "Error"), message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Canvas.OK", value: "OK", comment: ""), style: .cancel)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
     }
 }
 
