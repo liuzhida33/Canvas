@@ -13,6 +13,7 @@ public final class SignatureController: UIViewController {
     
     /// 签名结果
     public var signatureResult: ((UIImage) -> Void)?
+    public var cancelHandler: (() -> Void)?
     /// 水印风格
     public var watermark: WaterMark = .none
     /// 导出图片是否不透明
@@ -204,7 +205,9 @@ private extension SignatureController {
 private extension SignatureController {
     
     @objc func didExitAction(_ sender: Any) {
-        dismiss(animated: true)
+        dismiss(animated: true) {
+            self.cancelHandler?()
+        }
     }
     
     @objc func didRedoAction(_ sender: Any) {
@@ -218,9 +221,10 @@ private extension SignatureController {
                 self.showAlert(NSLocalizedString("Canvas.FailedToExportImage", value: "Failed to export image.", comment: ""))
                 return
             }
-            self.signatureResult?(image)
-            self.dismiss(animated: true)
             self.indicatorView.stopAnimating()
+            self.dismiss(animated: true) {
+                self.signatureResult?(image)
+            }
         }
     }
     

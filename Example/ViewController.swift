@@ -48,6 +48,9 @@ class ViewController: UIViewController {
             print(image)
             self?.imageView.image = image
         }
+        canvas.cancelHandler = {
+            print("Cancel")
+        }
         present(canvas, animated: true)
     }
 }
