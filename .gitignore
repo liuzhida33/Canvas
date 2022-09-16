@@ -11,3 +11,4 @@ Podfile.lock
 .bundle
 Carthage/Build
 Pods/
+.swiftpm
